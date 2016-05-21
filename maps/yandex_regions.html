@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Регионы</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script type="text/javascript">
+
+/* 
+   Инициализация Яндекс-карты 
+   Выделение всех регионов России
+   Выделение Краснодарского края красным
+   Определение по клику мыши идентификатора региона
+*/
+
+        
+ymaps.ready(init);
+
+function init () {
+	
+	var myMap = new ymaps.Map('map', {
+            center: [46.70, 38.28],
+            zoom: 7
+        });
+
+	ymaps.regions.load('RU', {
+	    lang: 'ru',
+	    quality: 2
+	}).then(function (result) {
+		
+		var regions = result.geoObjects;  // ссылка на коллекцию GeoObjectCollection
+		
+		regions.each(function (reg) {
+			if (reg.properties.get('osmId') == 108082) {
+				// Меняем цвет на красный
+				reg.options.set('fillColor', '#ff001a')
+			}
+		});	
+				
+		myMap.geoObjects.add(regions);
+		//событие для определения идентификатора региона на карте
+		result.geoObjects.events.add('click', function (e) {
+			
+			var region = e.get('target');
+			console.log(region.properties.get('name') + ' -> ' + region.properties.get('osmId'));
+		});
+		
+	}, function () {
+	    alert('No response');
+	});
+
+}
+         
+    </script>
+</head>
+
+<body>
+    <div id="map" style="width: 1000px; height: 600px"></div>
+</body>
+
+</html>
