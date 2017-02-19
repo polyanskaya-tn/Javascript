@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 require('../base/main.php');
 
 $GROUP = "admin"; // к какой группе относится данная страница
@@ -362,6 +362,7 @@ else
 </script>
 
 <?php
+
 
 $html->html_stop();
 ?>
