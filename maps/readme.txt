@@ -1,1 +1,3 @@
-работа с yandex и google картами
+п»їР Р°Р±РѕС‚Р° СЃ Google Рё Yandex РєР°СЂС‚Р°РјРё.
+
+Working with Google and Yandex maps.
