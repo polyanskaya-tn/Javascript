@@ -1,0 +1,88 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>WebSocket Test</title>
+</head>
+<body>
+  <script language="javascript" type="text/javascript">
+
+  var wsUri = "ws://echo.websocket.org/";
+  var output;
+
+  function testWebSocket()
+  {
+    websocket = new WebSocket(wsUri);
+    websocket.onopen = function(evt) { onOpen(evt) };
+    websocket.onclose = function(evt) { onClose(evt) };
+    websocket.onmessage = function(evt) { onMessage(evt) };
+    websocket.onerror = function(evt) { onError(evt) };
+  }
+
+  function onOpen(evt)
+  {
+    writeToScreen("CONNECTED");
+  }
+
+  function onClose(evt)
+  {
+    writeToScreen("DISCONNECTED");
+  }
+
+  function onMessage(evt)
+  {
+    writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
+  }
+
+  function onError(evt)
+  {
+    writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+  }
+
+  function doOpen()
+  {
+    output = document.getElementById("output");
+    testWebSocket();
+  }
+
+  function doSend(message)
+  {
+    writeToScreen("SENT: " + message);
+    websocket.send(message);
+  }
+
+  function doClose()
+  {
+    websocket.close();
+  }
+
+  function writeToScreen(message)
+  {
+    var pre = document.createElement("p");
+    pre.style.wordWrap = "break-word";
+    pre.innerHTML = message;
+    output.appendChild(pre);
+  }
+
+  function sendText()
+  {
+    testMessage = document.getElementById("test_message");
+    if (testMessage.value)
+	doSend(testMessage.value);
+  }
+
+  </script>
+
+
+  <h2>WebSocket Test</h2> 
+  <form action="" method="post">
+	<input type="button" value="Open Connection" onclick="doOpen()"/>
+	<input type="button" value="Close Connection" onclick="doClose()"/> <br/><br/>
+	Message: <input name="test_message" id="test_message" maxlength="255" type="text"> <br/><br/>
+	<input type="button" value="Send" onclick="sendText()"/> <br/>
+  </form>
+
+  <div id="output"></div>
+
+</body>
+</html>
