@@ -151,42 +151,42 @@ exports.EVENTS = [
 
 exports.CATEGORY = [
 	{
-		id: 1111,	
+		id: '1111',	
 		name:'Category A'
 	}, 
 	{
-		id: 2222,
+		id: '2222',
 		name:'Category B'
 	}, 
 	{
-		id: 3333,
+		id: '3333',
 		name:'Category C'
 	}, 
 	{
-		id: 4444,
+		id: '4444',
 		name:'Category D'
 	}
 ];
 
 exports.USER = [
 	{
-		id: 111,	
+		id: '111',	
 		name:'Andrew Brown'
 	}, 
 	{
-		id: 222,
+		id: '222',
 		name:'Daniel Johnson'
 	}, 
 	{
-		id: 333,
+		id: '333',
 		name:'John Smith'
 	}, 
 	{
-		id: 444,
+		id: '444',
 		name:'Mike Mitchel'
 	},
 	{
-		id: 555,
+		id: '555',
 		name:'Sam Fisher'
 	}
 ];
